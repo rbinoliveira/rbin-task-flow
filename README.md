@@ -18,7 +18,7 @@ Este repositório contém:
 
 ```bash
 # 1. Clonar este repo (apenas uma vez)
-git clone <url-do-repositorio> ~/.vibe-coding-rules
+git clone https://github.com/rubensdeoliveira/vibe-coding-rules.git ~/.vibe-coding-rules
 
 # 2. Em qualquer projeto novo, executar:
 ~/.vibe-coding-rules/install-rules.sh
