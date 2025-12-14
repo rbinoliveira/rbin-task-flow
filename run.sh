@@ -1,27 +1,83 @@
 #!/bin/bash
 
 # Script para instalar regras de desenvolvimento do repositório vibe-coding-rules
-# Uso: ./install-rules.sh [caminho-do-projeto]
-
-set -e
+# Uso: ./run.sh
 
 # Cores para output
+RED='\033[0;31m'
 GREEN='\033[0;32m'
 BLUE='\033[0;34m'
 YELLOW='\033[1;33m'
 NC='\033[0m' # No Color
 
-# Diretório do repositório de regras (onde este script está)
-RULES_REPO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-TARGET_DIR="${1:-$(pwd)}"
+# Loop para solicitar e validar o caminho do diretório
+VALID_DIR=false
+while [ "$VALID_DIR" = false ]; do
+    echo -e "${BLUE}📁 Digite o caminho do diretório onde deseja instalar as regras:${NC}"
+    read -r TARGET_DIR
 
-echo -e "${BLUE}🚀 Instalando regras de desenvolvimento...${NC}\n"
+    # Verificar se o caminho foi fornecido
+    if [ -z "$TARGET_DIR" ]; then
+        echo -e "${RED}❌ Erro: Caminho do diretório não fornecido. Tente novamente.${NC}\n"
+        continue
+    fi
 
-# Verificar se o diretório de destino existe
-if [ ! -d "$TARGET_DIR" ]; then
-    echo -e "${YELLOW}⚠️  Diretório não encontrado: $TARGET_DIR${NC}"
-    exit 1
-fi
+    # Validar se o diretório existe
+    if [ ! -d "$TARGET_DIR" ]; then
+        echo -e "${RED}❌ Erro: Diretório inválido ou não encontrado${NC}"
+        echo -e "${YELLOW}Diretório fornecido: $TARGET_DIR${NC}"
+        echo -e "${YELLOW}Por favor, verifique o caminho e tente novamente.${NC}\n"
+        continue
+    fi
+
+    # Validar se o diretório é acessível (tem permissão de leitura)
+    if [ ! -r "$TARGET_DIR" ]; then
+        echo -e "${RED}❌ Erro: Sem permissão de leitura no diretório${NC}"
+        echo -e "${YELLOW}Diretório fornecido: $TARGET_DIR${NC}"
+        echo -e "${YELLOW}Por favor, verifique as permissões e tente novamente.${NC}\n"
+        continue
+    fi
+
+    # Validar se o diretório é gravável (tem permissão de escrita)
+    if [ ! -w "$TARGET_DIR" ]; then
+        echo -e "${RED}❌ Erro: Sem permissão de escrita no diretório${NC}"
+        echo -e "${YELLOW}Diretório fornecido: $TARGET_DIR${NC}"
+        echo -e "${YELLOW}Por favor, verifique as permissões e tente novamente.${NC}\n"
+        continue
+    fi
+
+    # Normalizar o caminho (resolver caminhos relativos e ..)
+    NORMALIZED_DIR="$(cd "$TARGET_DIR" && pwd 2>/dev/null)"
+    if [ $? -ne 0 ] || [ -z "$NORMALIZED_DIR" ]; then
+        echo -e "${RED}❌ Erro: Não foi possível acessar o diretório${NC}"
+        echo -e "${YELLOW}Diretório fornecido: $TARGET_DIR${NC}"
+        echo -e "${YELLOW}Por favor, verifique o caminho e tente novamente.${NC}\n"
+        continue
+    fi
+    TARGET_DIR="$NORMALIZED_DIR"
+
+    # Diretório do repositório de regras (onde este script está)
+    RULES_REPO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+    # Verificar se não está tentando instalar no próprio repositório de regras
+    if [ "$TARGET_DIR" = "$RULES_REPO_DIR" ]; then
+        echo -e "${YELLOW}⚠️  Aviso: O diretório de destino é o próprio repositório de regras${NC}"
+        echo -e "${YELLOW}Isso pode sobrescrever arquivos importantes. Continuar? (s/N)${NC}"
+        read -r response
+        if [[ ! "$response" =~ ^[sS]$ ]]; then
+            echo -e "${BLUE}Por favor, escolha um diretório diferente.${NC}\n"
+            continue
+        fi
+    fi
+
+    # Se chegou aqui, o diretório é válido
+    VALID_DIR=true
+done
+
+set -e
+
+echo -e "${BLUE}🚀 Instalando regras de desenvolvimento...${NC}"
+echo -e "${BLUE}📁 Diretório de destino: $TARGET_DIR${NC}\n"
 
 # Criar estrutura de diretórios
 echo -e "${BLUE}📁 Criando estrutura de diretórios...${NC}"
@@ -130,7 +186,7 @@ if [ -f "$RULES_REPO_DIR/CLAUDE.md" ]; then
     echo -e "${GREEN}✅ CLAUDE.md copiado${NC}"
 fi
 
-echo -e "\n${GREEN}✨ Instalação concluída!${NC}\n"
+echo -e "\n${GREEN}✨ Instalação concluída com sucesso!${NC}\n"
 echo -e "${BLUE}📚 Próximos passos:${NC}"
 echo -e "   ${GREEN}✓${NC} Cursor rules instaladas"
 echo -e "   ${GREEN}✓${NC} Claude Code configurado"
@@ -150,3 +206,4 @@ echo -e "${BLUE}📖 Templates incluídos:${NC}"
 echo -e "   • PRD exemplo: .taskmaster/templates/prd-example.md"
 echo -e "   • Comandos Claude: .claude/commands/taskmaster.md\n"
 
+exit 0
