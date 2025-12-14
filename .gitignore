@@ -32,9 +32,13 @@ node_modules/
 .taskmaster/docs/
 .taskmaster/reports/
 
-# Arquivos específicos de projeto
-CLAUDE.md
+# Arquivos específicos de projeto (mantemos o template no repo)
 .claude/settings.local.json
 
 # Configuração MCP local (não commitar, apenas o .example)
 .cursor/mcp.json
+.mcp.json
+
+# Task files
+tasks.json
+tasks/ 

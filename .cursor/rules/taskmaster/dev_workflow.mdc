@@ -404,13 +404,10 @@ Once a task has been broken down into subtasks using `expand_task` or similar me
     *   After verifying the implementation and updating any necessary rules, mark the subtask as completed: `set_task_status` / `task-master set-status --id=<subtaskId> --status=done`.
 
 9.  **Commit Changes (If using Git):**
-    *   **NUNCA executar comandos git automaticamente** - seguir [git_control.mdc](mdc:.cursor/rules/git_control.mdc)
-    *   **Apenas sugerir** staging e commit message seguindo [commit_practices.mdc](mdc:.cursor/rules/commit_practices.mdc):
-        - Analyze git changes using `git status` and `git diff` (read-only)
-        - Generate commit message based on task/subtask context
-        - Present formatted suggestion to the user (ready to copy/paste)
-    *   **O usuário executa** os comandos git quando quiser
-    *   Consider if a Changeset is needed according to internal versioning guidelines (previously linked to `changeset.mdc`). If so, suggest running `npm run changeset`, but let the user execute it.
+    *   Stage the relevant code changes and any updated/new rule files (`git add .`).
+    *   Craft a comprehensive Git commit message summarizing the work done for the subtask, including both code implementation and any rule adjustments.
+    *   Execute the commit command directly in the terminal (e.g., `git commit -m 'feat(module): Implement feature X for subtask <subtaskId>\n\n- Details about changes...\n- Updated rule Y for pattern Z'`).
+    *   Consider if a Changeset is needed according to internal versioning guidelines (previously linked to `changeset.mdc`). If so, run `npm run changeset`, stage the generated file, and amend the commit or create a new one.
 
 10. **Proceed to Next Subtask:**
     *   Identify the next subtask (e.g., using `next_task` / `task-master next`).

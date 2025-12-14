@@ -1,158 +1,322 @@
 # Vibe Coding Rules
 
-Repositório centralizado de regras de desenvolvimento para uso em todos os projetos. Este repositório contém templates e padrões que podem ser facilmente instalados em qualquer projeto.
+<div align="center">
 
-## 📋 Conteúdo
+![Claude](https://img.shields.io/badge/Claude-Sonnet%204.5-8A2BE2?style=for-the-badge&logo=anthropic&logoColor=white)
+![Cursor](https://img.shields.io/badge/Cursor-IDE-blue?style=for-the-badge&logo=visual-studio-code&logoColor=white)
+![Task Master](https://img.shields.io/badge/Task%20Master-AI-green?style=for-the-badge)
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)
 
-Este repositório contém:
+**One-command setup for Claude Code, Cursor, and Taskmaster in any project**
 
-- **Regras do Cursor** (`.cursor/rules/`): Padrões de desenvolvimento, workflows e melhores práticas
-- **Configuração MCP** (`.mcp.json`): Template de configuração para integração com Task Master AI
-- **Scripts de Instalação**: Scripts para copiar regras para outros projetos
+</div>
 
-## 🚀 Instalação Rápida
+---
 
-> **Nota**: Este template é otimizado para projetos que sempre usam **Claude**, **Taskmaster** e **Cursor**.
+## Overview
 
-### ⚡ Instalação em 2 Comandos
+A centralized repository of development configurations and rules that can be instantly installed in any project. Provides complete setup for Claude Code, Cursor IDE, and Taskmaster AI with a single command.
+
+### Key Features
+
+- **One-Command Installation** - Complete setup with `./install-rules.sh`
+- **Always Overwrites** - Fresh configs every time, no conflicts
+- **Claude as Default** - Claude Code Sonnet configured across all tools
+- **Discrete .gitignore** - AI configs hidden with generic comments
+- **Zero Configuration** - No need to run `task-master init` or configure manually
+- **Complete Templates** - PRD examples, commands, and workflows included
+
+## System Requirements
+
+- **Operating System:** macOS, Linux, or Windows (WSL)
+- **Tools:** Git, Bash
+- **Optional:** Claude Code CLI, Cursor IDE, Taskmaster AI
+- **API Keys:** Anthropic API key (required), Perplexity API key (optional)
+
+## Installation
+
+### Quick Start
 
 ```bash
-# 1. Clonar este repo (apenas uma vez)
-git clone <url-do-repositorio> ~/.vibe-coding-rules
+# 1. Clone this repository (one time only)
+git clone https://github.com/your-username/vibe-coding-rules.git ~/.vibe-coding-rules
 
-# 2. Em qualquer projeto novo, executar:
+# 2. In any new project, run the installer
+cd /your/project
 ~/.vibe-coding-rules/install-rules.sh
 ```
 
-## ⚙️ Configuração Inicial (2 minutos)
+### What Gets Installed
 
-Após instalar as regras:
+The script creates and configures:
 
-### 1. Adicionar API Keys
+```
+your-project/
+├── .cursor/
+│   ├── rules/                    # All development rules
+│   │   ├── cursor_rules.mdc
+│   │   ├── self_improve.mdc
+│   │   ├── code_comments.mdc
+│   │   ├── commit_practices.mdc
+│   │   ├── git_control.mdc
+│   │   ├── task_execution.mdc
+│   │   └── taskmaster/
+│   │       ├── dev_workflow.mdc
+│   │       ├── taskmaster.mdc
+│   │       └── hamster.mdc
+│   └── mcp.json                  # MCP server config
+│
+├── .claude/
+│   ├── settings.json             # Claude Code settings
+│   └── commands/
+│       └── taskmaster.md         # Taskmaster commands
+│
+├── .taskmaster/
+│   ├── config.json               # Pre-configured with Claude Sonnet
+│   ├── CLAUDE.md                 # Claude instructions
+│   └── templates/
+│       └── prd-example.md        # Complete PRD example
+│
+├── .mcp.json                     # MCP config for Claude Code
+├── .env                          # API keys template
+├── CLAUDE.md                     # Main Claude instructions
+└── .gitignore                    # Updated with discrete entries
+```
 
-Edite `.cursor/mcp.json` e adicione suas chaves:
+## Configuration
+
+### 1. Add API Keys
+
+Edit `.env` and add your keys:
+
+```bash
+ANTHROPIC_API_KEY=your-anthropic-key-here
+PERPLEXITY_API_KEY=your-perplexity-key-here
+```
+
+### 2. Update MCP Configs
+
+Copy the same keys to:
+- `.mcp.json` (for Claude Code)
+- `.cursor/mcp.json` (for Cursor)
+
+Or use environment variables (recommended).
+
+### 3. Restart Cursor
+
+Restart Cursor IDE to load the MCP server.
+
+### 4. Verify Setup
+
+Check `.taskmaster/config.json` - should show:
 
 ```json
 {
-  "mcpServers": {
-    "task-master-ai": {
-      "env": {
-        "ANTHROPIC_API_KEY": "sua-chave-aqui",
-        "PERPLEXITY_API_KEY": "sua-chave-aqui"
-      }
+  "models": {
+    "main": {
+      "provider": "claude-code",
+      "modelId": "sonnet"
+    },
+    "research": {
+      "provider": "claude-code",
+      "modelId": "sonnet"
+    },
+    "fallback": {
+      "provider": "claude-code",
+      "modelId": "sonnet"
     }
   }
 }
 ```
 
-### 2. Reiniciar Cursor
+**You're ready!** No need to run `task-master init`.
 
-Reinicie o Cursor para carregar o MCP server do Taskmaster.
+## Usage
 
-### 3. (Opcional) Inicializar Taskmaster
+### Basic Workflow
 
 ```bash
-task-master init
-task-master models --setup
+# Create a PRD (Product Requirements Document)
+vim .taskmaster/docs/prd.txt
+
+# Parse the PRD to generate tasks
+task-master parse-prd .taskmaster/docs/prd.txt
+
+# Analyze task complexity
+task-master analyze-complexity --research
+
+# Expand tasks into subtasks
+task-master expand --all --research
+
+# Start working
+task-master next
 ```
 
-## 📁 Estrutura de Arquivos
+### Cursor Integration
+
+All rules are automatically active in Cursor. The IDE will:
+- Follow coding standards from `.cursor/rules/`
+- Use Taskmaster workflows from `.cursor/rules/taskmaster/`
+- Connect to Taskmaster via MCP server
+
+### Claude Code Integration
+
+Claude Code is pre-configured with:
+- MCP server connection to Taskmaster
+- Custom commands in `.claude/commands/`
+- Development rules from CLAUDE.md
+
+## What's Configured
+
+### Claude Code Sonnet
+
+All Taskmaster operations use **Claude Code Sonnet**:
+- **Main model** (generation/updates) → `claude-code/sonnet`
+- **Research model** → `claude-code/sonnet`
+- **Fallback model** → `claude-code/sonnet`
+
+### Development Rules
+
+Included rules for:
+- Cursor rule formatting
+- Self-improvement processes
+- Code commenting standards
+- Commit practices
+- Git command control
+- Task execution management
+- Complete Taskmaster workflows
+
+### Templates
+
+Pre-configured templates:
+- **PRD Example** - Complete authentication system PRD
+- **Taskmaster Commands** - Ready-to-use slash commands
+- **Workflows** - Optimized development processes
+
+## Discrete .gitignore
+
+The installer adds configs to `.gitignore` with **generic comments**:
+
+```gitignore
+# Local configuration
+.env
+.env.local
+.mcp.json
+CLAUDE.md
+
+# IDE and tools
+.claude/
+.cursor/mcp.json
+.cursor/rules/*.local.mdc
+
+# Task management
+.taskmaster/tasks/
+.taskmaster/state.json
+.taskmaster/config.json
+.taskmaster/CLAUDE.md
+.taskmaster/docs/
+.taskmaster/reports/
+```
+
+**Why discrete?**
+- No mention of "AI", "Claude", or "Anthropic"
+- Looks like standard project configs
+- Generic section names
+- Professional appearance
+
+## Updating Projects
+
+To update configs in an existing project:
+
+```bash
+cd /your/project
+~/.vibe-coding-rules/install-rules.sh
+```
+
+The script will:
+- ✅ Copy new rules
+- ✅ **Overwrite all configs** with latest versions
+- ✅ Update .gitignore if needed
+- ✅ Refresh templates
+
+## Project Structure
+
+This repository contains:
 
 ```
 vibe-coding-rules/
 ├── .cursor/
-│   ├── mcp.json.example            # Template de configuração MCP
-│   └── rules/                       # Regras de desenvolvimento
-│       ├── cursor_rules.mdc         # Guia de formatação de regras
-│       ├── self_improve.mdc         # Processo de melhoria contínua
-│       ├── code_comments.mdc        # Regras de comentários
-│       ├── commit_practices.mdc     # Práticas de commit
-│       ├── git_control.mdc          # Controle de comandos git
-│       ├── task_execution.mdc       # Gerenciamento de execução de tasks
-│       └── taskmaster/
-│           ├── dev_workflow.mdc     # Workflow de desenvolvimento
-│           ├── taskmaster.mdc       # Referência de comandos
-│           └── hamster.mdc         # Integração com Hamster
-├── .gitignore                       # Template de .gitignore
-├── CLAUDE.md.example                # Template de instruções Claude
-├── install-rules.sh                 # Script de instalação
-└── README.md                        # Este arquivo
+│   ├── mcp.json.example          # MCP config template
+│   └── rules/                    # All development rules
+│
+├── .claude/
+│   ├── settings.json             # Claude Code settings
+│   └── commands/                 # Custom commands
+│
+├── .taskmaster/
+│   ├── config.json.example       # Pre-configured with Claude
+│   ├── CLAUDE.md.example         # Claude instructions
+│   └── templates/                # PRD and other templates
+│
+├── .mcp.json                     # Root MCP config
+├── .env.example                  # API keys template
+├── .gitignore                    # Template gitignore
+├── CLAUDE.md                     # Main Claude instructions
+├── CHANGELOG.md                  # Version history
+├── install-rules.sh              # Installation script
+└── README.md                     # This file
 ```
 
+## API Keys
 
-## 📝 Adicionando Novas Regras
+### Required
 
-Para adicionar novas regras a este repositório:
+**ANTHROPIC_API_KEY** - For Claude
+- Used in: Claude Code, Cursor (via MCP), Taskmaster
+- Get it at: https://console.anthropic.com/
 
-1. Crie um novo arquivo `.mdc` em `.cursor/rules/` ou em um subdiretório apropriado
-2. Siga o formato definido em `cursor_rules.mdc`
-3. Use `globs` para especificar em quais arquivos a regra se aplica
-4. Commit e push das mudanças
+### Optional
 
-### Exemplo de Nova Regra
+**PERPLEXITY_API_KEY** - For research tasks
+- Used in: Taskmaster research operations
+- Get it at: https://www.perplexity.ai/settings/api
 
-```markdown
+## Important Notes
+
+- ⚠️ This is a **template repository** - don't use Taskmaster here
+- ✅ Use Taskmaster in **projects that receive** the configs
+- 🔄 Script **always overwrites** existing configs
+- 🤫 .gitignore entries are **discrete** (no AI mentions)
+- 🎯 Claude Code Sonnet is **default everywhere**
+- 📦 Configs are **gitignored** in destination projects
+
+## Contributing
+
+Contributions welcome! To add new rules or improve templates:
+
+1. Fork this repository
+2. Create a feature branch
+3. Add your rules/templates following existing formats
+4. Test in a real project
+5. Submit a Pull Request
+
+## License
+
+MIT License - See LICENSE file for details
+
+## Support
+
+For issues or questions:
+- Open an issue on GitHub
+- Check existing issues for solutions
+- Refer to CHANGELOG.md for recent updates
+
 ---
-description: Regras de estilo para TypeScript
-globs: **/*.ts, **/*.tsx
-alwaysApply: true
----
 
-- **TypeScript Best Practices:**
-  - Sempre use tipos explícitos em funções públicas
-  - Prefira `interface` sobre `type` para objetos
-  - Use `const` assertions quando apropriado
-```
+<div align="center">
 
-## 🔄 Atualizando Regras em Projetos
+**Made with ❤️ for developers who vibe with AI-powered workflows**
 
-Para atualizar as regras em um projeto existente:
+[⬆ Back to top](#vibe-coding-rules)
 
-```bash
-# Executar o script de instalação novamente
-~/.vibe-coding-rules/install-rules.sh /caminho/para/seu/projeto
-```
-
-O script irá:
-- ✅ Copiar novas regras
-- ✅ Atualizar regras existentes
-- ✅ Preservar configurações locais (como `.cursor/mcp.json` se já existir)
-
-## 📚 Regras Incluídas
-
-### Regras Base
-- **cursor_rules.mdc**: Formatação e estrutura de regras
-- **self_improve.mdc**: Processo de melhoria contínua de regras
-- **code_comments.mdc**: Regras sobre comentários e documentação
-- **commit_practices.mdc**: Práticas de commit após tarefas
-- **git_control.mdc**: Controle de comandos git
-- **task_execution.mdc**: Gerenciamento automático de status de tasks
-
-### Taskmaster
-- **dev_workflow.mdc**: Workflow completo de desenvolvimento com Task Master
-- **taskmaster.mdc**: Referência completa de comandos e ferramentas
-- **hamster.mdc**: Integração com Hamster briefs
-
-## 🤝 Contribuindo
-
-Para melhorar este repositório de regras:
-
-1. Identifique padrões que se repetem em múltiplos projetos
-2. Crie uma regra seguindo o formato em `cursor_rules.mdc`
-3. Adicione exemplos práticos do código real
-4. Teste a regra em um projeto antes de adicionar aqui
-5. Faça commit e push
-
-## 📖 Referências
-
-- [Cursor Rules Documentation](https://cursor.sh/docs)
-- [Task Master AI](https://github.com/taskmaster-ai/taskmaster)
-- [MCP Protocol](https://modelcontextprotocol.io)
-
-## ⚠️ Notas Importantes
-
-- Este repositório contém apenas **templates e padrões reutilizáveis**
-- Arquivos específicos de projeto (como `.taskmaster/config.json`) não são incluídos
-- Cada projeto deve ter seu próprio `.env` com API keys
-- O script de instalação preserva configurações existentes quando apropriado
-
+</div>

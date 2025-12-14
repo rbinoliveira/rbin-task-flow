@@ -48,10 +48,7 @@ tm set-status -i 1,1.1,1.2,2 -s in-progress
    ```bash
    tm set-status -i 1.1 -s done
    ```
-6. **Commit Changes**: 
-   - **Automatically suggest a commit message** following [commit_practices.mdc](mdc:.cursor/rules/commit_practices.mdc)
-   - Analyze git changes and generate commit message based on subtask context
-   - Present formatted suggestion to the user
+6. **Commit Changes**: Commit the completed subtask work
 7. **Repeat**: Continue until all subtasks are complete
 
 ### **Parent Task Completion**
