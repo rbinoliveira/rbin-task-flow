@@ -7,8 +7,8 @@
 }
 
 ROOT_DIR=$(pwd)
-STATUS_FILE="$ROOT_DIR/.task-flow/status.json"
-TASKS_FILE="$ROOT_DIR/.task-flow/tasks.json"
+STATUS_FILE="$ROOT_DIR/.task-flow/scripts/status.json"
+TASKS_FILE="$ROOT_DIR/.task-flow/scripts/tasks.json"
 
 [ ! -f "$STATUS_FILE" ] && echo "⚠️  Status file not found." && exit 1
 

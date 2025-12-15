@@ -71,13 +71,14 @@ your-project/
 │   └── settings.json             # Claude Code settings
 │
 ├── .task-flow/                   # Rubinho Task Flow
-│   ├── tasks.txt                 # Plain text task definitions
-│   ├── tasks.json                # Generated tasks (auto)
-│   ├── status.json               # Task status tracking (auto)
-│   ├── generate.js               # AI generation script
-│   ├── status.sh                 # Status viewer
-│   ├── show.sh                   # Task details viewer
-│   └── done.sh                   # Mark tasks as done
+│   ├── tasks.txt                 # Plain text task definitions (edit this!)
+│   └── scripts/                  # Management scripts (don't edit)
+│       ├── generate.js           # AI generation script
+│       ├── status.sh             # Status viewer
+│       ├── show.sh               # Task details viewer
+│       ├── done.sh               # Mark tasks as done
+│       ├── tasks.json            # Generated tasks (auto)
+│       └── status.json           # Task status tracking (auto)
 │
 ├── rubinho-task-flow.sh          # Task Flow CLI
 └── .gitignore                    # Updated with discrete entries
@@ -184,23 +185,20 @@ Simple yet powerful task management:
 
 ## Discrete .gitignore
 
-The installer adds configs to `.gitignore` with **generic comments**:
+The installer adds these entries to `.gitignore`:
 
 ```gitignore
-# IDE and tools
 .claude/
 .cursor/rules/*.local.mdc
-
-# Task management
-.task-flow/tasks.json
-.task-flow/status.json
+.task-flow/scripts/tasks.json
+.task-flow/scripts/status.json
 ```
 
 **Why discrete?**
+- No comments explaining what they are
 - No mention of "AI", "Claude", or "Anthropic"
 - Looks like standard project configs
-- Generic section names
-- Professional appearance
+- Professional and clean appearance
 
 ## Updating Projects
 
@@ -234,10 +232,13 @@ rubinho-task-flow/
 │
 ├── .task-flow/
 │   ├── tasks.txt                 # Task definitions template
-│   ├── generate.js               # AI generation script
-│   ├── status.sh                 # Status viewer
-│   ├── show.sh                   # Task details viewer
-│   └── done.sh                   # Mark tasks as done
+│   └── scripts/                  # Management scripts
+│       ├── generate.js           # AI generation script
+│       ├── status.sh             # Status viewer
+│       ├── show.sh               # Task details viewer
+│       ├── done.sh               # Mark tasks as done
+│       ├── tasks.json            # Generated tasks (auto)
+│       └── status.json           # Task status tracking (auto)
 │
 ├── .gitignore                    # Template gitignore
 ├── CLAUDE.md                     # Main Claude instructions

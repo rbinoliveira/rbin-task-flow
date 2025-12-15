@@ -6,8 +6,8 @@ const https = require('https');
 
 const ROOT_DIR = process.cwd();
 const TASKS_INPUT_FILE = path.join(ROOT_DIR, '.task-flow', 'tasks.txt');
-const TASKS_OUTPUT_FILE = path.join(ROOT_DIR, '.task-flow', 'tasks.json');
-const STATUS_FILE = path.join(ROOT_DIR, '.task-flow', 'status.json');
+const TASKS_OUTPUT_FILE = path.join(ROOT_DIR, '.task-flow', 'scripts', 'tasks.json');
+const STATUS_FILE = path.join(ROOT_DIR, '.task-flow', 'scripts', 'status.json');
 
 function loadTasksFromFile() {
   if (!fs.existsSync(TASKS_INPUT_FILE)) {

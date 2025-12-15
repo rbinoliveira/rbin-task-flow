@@ -50,8 +50,10 @@ install_to_project() {
     echo -e "${GREEN}✅ Claude settings${NC}"
 
   if [ -d "$SCRIPT_DIR/.task-flow" ]; then
-    cp "$SCRIPT_DIR/.task-flow/"*.{js,sh} "$target/.task-flow/" 2>/dev/null
-    chmod +x "$target/.task-flow/"*.sh 2>/dev/null
+    mkdir -p "$target/.task-flow/scripts"
+    [ -d "$SCRIPT_DIR/.task-flow/scripts" ] &&
+      cp "$SCRIPT_DIR/.task-flow/scripts/"* "$target/.task-flow/scripts/" 2>/dev/null &&
+      chmod +x "$target/.task-flow/scripts/"*.sh 2>/dev/null
     [ ! -f "$target/.task-flow/tasks.txt" ] &&
       [ -f "$SCRIPT_DIR/.task-flow/tasks.txt" ] &&
       cp "$SCRIPT_DIR/.task-flow/tasks.txt" "$target/.task-flow/tasks.txt"
@@ -64,16 +66,13 @@ install_to_project() {
 
   [ ! -f "$target/.gitignore" ] && touch "$target/.gitignore"
 
-  if ! grep -q "^\.task-flow/tasks\.json$" "$target/.gitignore" 2>/dev/null; then
+  if ! grep -q "^\.task-flow/scripts/tasks\.json$" "$target/.gitignore" 2>/dev/null; then
     cat >> "$target/.gitignore" << 'EOF'
 
-# IDE and tools
 .claude/
 .cursor/rules/*.local.mdc
-
-# Task management
-.task-flow/tasks.json
-.task-flow/status.json
+.task-flow/scripts/tasks.json
+.task-flow/scripts/status.json
 EOF
     echo -e "${GREEN}✅ .gitignore${NC}"
   fi

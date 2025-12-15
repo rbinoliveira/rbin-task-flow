@@ -25,5 +25,5 @@ node_modules/
 .claude/settings.local.json
 
 # Rubinho Task Flow - arquivos específicos de projeto
-.task-flow/tasks.json
-.task-flow/status.json
+.task-flow/scripts/tasks.json
+.task-flow/scripts/status.json

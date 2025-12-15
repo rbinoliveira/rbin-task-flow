@@ -1,8 +1,8 @@
 #!/bin/bash
 
 ROOT_DIR=$(pwd)
-TASKS_FILE="$ROOT_DIR/.task-flow/tasks.json"
-STATUS_FILE="$ROOT_DIR/.task-flow/status.json"
+TASKS_FILE="$ROOT_DIR/.task-flow/scripts/tasks.json"
+STATUS_FILE="$ROOT_DIR/.task-flow/scripts/status.json"
 
 YELLOW='\033[1;33m'
 NC='\033[0m'

@@ -47,13 +47,13 @@ while true; do
     1)
       show_header
       echo -e "${BLUE}🤖 Generating tasks...${NC}\n"
-      [ -f "$TASK_FLOW_DIR/generate.js" ] && node "$TASK_FLOW_DIR/generate.js" || echo -e "${RED}❌ Error: generate.js not found${NC}"
+      [ -f "$TASK_FLOW_DIR/scripts/generate.js" ] && node "$TASK_FLOW_DIR/scripts/generate.js" || echo -e "${RED}❌ Error: generate.js not found${NC}"
       pause
       ;;
 
     2)
       show_header
-      [ -x "$TASK_FLOW_DIR/status.sh" ] && bash "$TASK_FLOW_DIR/status.sh" || echo -e "${RED}❌ Error: status.sh not found${NC}"
+      [ -x "$TASK_FLOW_DIR/scripts/status.sh" ] && bash "$TASK_FLOW_DIR/scripts/status.sh" || echo -e "${RED}❌ Error: status.sh not found${NC}"
       pause
       ;;
 
@@ -61,7 +61,7 @@ while true; do
       show_header
       echo -e "${YELLOW}Enter task ID:${NC}\n"
       read -r -p "ID: " task_id
-      [ -z "$task_id" ] && echo -e "\n${RED}❌ ID cannot be empty${NC}" || bash "$TASK_FLOW_DIR/show.sh" "$task_id"
+      [ -z "$task_id" ] && echo -e "\n${RED}❌ ID cannot be empty${NC}" || bash "$TASK_FLOW_DIR/scripts/show.sh" "$task_id"
       pause
       ;;
 
@@ -70,7 +70,7 @@ while true; do
       echo -e "${YELLOW}Enter subtask ID (format: task_id.subtask_id):${NC}"
       echo -e "${CYAN}Example: 1.2${NC}\n"
       read -r -p "ID: " subtask_id
-      [ -z "$subtask_id" ] && echo -e "\n${RED}❌ ID cannot be empty${NC}" || bash "$TASK_FLOW_DIR/done.sh" "$subtask_id"
+      [ -z "$subtask_id" ] && echo -e "\n${RED}❌ ID cannot be empty${NC}" || bash "$TASK_FLOW_DIR/scripts/done.sh" "$subtask_id"
       pause
       ;;
 
