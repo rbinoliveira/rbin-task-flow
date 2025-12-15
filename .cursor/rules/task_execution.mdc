@@ -1,138 +1,108 @@
 ---
-description: Gerenciamento automático de status de tasks durante execução e sugestão de commit ao finalizar
+description: Task management workflow with Rubinho Task Flow
 globs: **/*
 alwaysApply: true
 ---
 
-- **Gerenciamento Automático de Status de Tasks:**
-  - **Antes de executar tasks**: Sempre marcar como `in-progress` antes de começar
-  - **Após finalizar tasks**: Sempre marcar como `done` ao concluir
-  - **Sugerir commit**: Após marcar como done, sugerir git add e git commit com mensagem descritiva
+- **Rubinho Task Flow - Interactive Task Management:**
+  - This project uses **Rubinho Task Flow** for task tracking and management
+  - **IMPORTANT**: When user mentions "task flow", they always refer to **Rubinho Task Flow**
+  - Access via interactive menu: `.task-flow/scripts/task-flow.sh`
+  - Tasks are defined in plain text: `.task-flow/.task-flow-tasks.txt`
+  - Task data is stored in: `.task-flow/scripts/` (do not edit directly)
+  - Task files: `tasks.json` (definitions) and `status.json` (progress tracking)
 
-- **Quando Aplicar:**
-  - Quando o usuário pedir para executar uma ou mais tasks
-  - Quando o usuário pedir para implementar funcionalidades relacionadas a tasks
-  - Quando o usuário pedir para trabalhar em tarefas específicas
+- **Task Definition:**
+  - Edit `.task-flow/.task-flow-tasks.txt` to define tasks
+  - Use simple format: `- [ ] Task description`
+  - AI will generate detailed subtasks from descriptions
+  - Keep descriptions clear and actionable
 
-- **Processo de Execução:**
-  1. **Identificar tasks**: Quando o usuário mencionar tasks a serem executadas, identificar os IDs
-  2. **Marcar como in-progress**: Antes de começar, usar `set_task_status` para marcar como `in-progress`
-  3. **Executar trabalho**: Implementar as tasks normalmente
-  4. **Marcar como done**: Após conclusão, usar `set_task_status` para marcar como `done`
-  5. **Sugerir commit**: Analisar mudanças e sugerir git add + git commit
+- **Interactive Menu Options:**
+  1. **Generate tasks** - AI transforms tasks.txt into detailed subtasks
+  2. **View status** - See all tasks and their completion progress
+  3. **View details** - Get detailed instructions for a specific task
+  4. **Mark as done** - Update subtask completion status
+  5. **Edit tasks.txt** - Open editor to add/modify tasks
 
-- **Marcação de Status:**
-  ```bash
-  # Antes de executar (sempre fazer primeiro)
-  task-master set-status --id=1,2,3 --status=in-progress
-  
-  # Após finalizar (sempre fazer ao concluir)
-  task-master set-status --id=1,2,3 --status=done
-  ```
-
-- **Sugestão de Commit:**
-  - **Analisar mudanças**: Usar `git status` e `git diff` para identificar arquivos modificados
-  - **Gerar mensagem**: Criar mensagem baseada nas tasks executadas
-  - **Seguir formato**: Usar conventional commits conforme [commit_practices.mdc](mdc:.cursor/rules/commit_practices.mdc)
-  - **NUNCA executar git**: Apenas sugerir, seguindo [git_control.mdc](mdc:.cursor/rules/git_control.mdc)
-
-- **Formato da Sugestão de Commit:**
-  ```bash
-  # ✅ DO: Formato recomendado
-  git add .
-  git commit -m "feat(module): Implement tasks X, Y, Z
-  
-  - Task X: Descrição do que foi feito
-  - Task Y: Descrição do que foi feito
-  - Task Z: Descrição do que foi feito
-  
-  Tasks: 1, 2, 3"
-  ```
-
-- **Exemplos de Fluxo:**
-  
-  **Exemplo 1: Executar uma task**
+- **Workflow Example:**
   ```markdown
-  Usuário: "Execute a task 5"
-  
-  Ações do AI:
-  1. task-master set-status --id=5 --status=in-progress
-  2. [Implementar task 5]
-  3. task-master set-status --id=5 --status=done
-  4. Sugerir commit:
-     ```bash
-     git add .
-     git commit -m "feat(module): Implement task 5 - [descrição]
-     
-     - [detalhes da implementação]
-     - Task ID: 5"
-     ```
-  ```
-  
-  **Exemplo 2: Executar múltiplas tasks**
-  ```markdown
-  Usuário: "Execute as tasks 3, 4 e 7"
-  
-  Ações do AI:
-  1. task-master set-status --id=3,4,7 --status=in-progress
-  2. [Implementar tasks 3, 4, 7]
-  3. task-master set-status --id=3,4,7 --status=done
-  4. Sugerir commit:
-     ```bash
-     git add .
-     git commit -m "feat(module): Implement tasks 3, 4, 7
-     
-     - Task 3: [descrição]
-     - Task 4: [descrição]
-     - Task 7: [descrição]
-     
-     Tasks: 3, 4, 7"
-     ```
+  1. Add tasks to `.task-flow/.task-flow-tasks.txt`:
+     - [ ] Implement user authentication
+     - [ ] Add database migrations
+     - [ ] Create API endpoints
+
+  2. Run: ./rubinho-task-flow.sh
+  3. Select option 1 to generate detailed subtasks
+  4. Select option 2 to view all tasks and progress
+  5. Select option 3 to view specific task details
+  6. Work on the tasks following the AI-generated instructions
+  7. Select option 4 to mark subtasks as done when completed
   ```
 
-- **Identificação de Tasks:**
-  - Se o usuário mencionar números (ex: "task 5", "tasks 1,2,3"), usar esses IDs
-  - Se o usuário mencionar títulos, buscar tasks correspondentes usando `get_tasks`
-  - Se não houver contexto claro, perguntar ao usuário quais tasks executar
+- **Commit Workflow:**
+  - After completing tasks, follow [commit_practices.mdc](mdc:.cursor/rules/commit_practices.mdc)
+  - Never execute git commands directly - follow [git_control.mdc](mdc:.cursor/rules/git_control.mdc)
+  - Suggest commits with descriptive messages referencing completed tasks
 
-- **Análise de Mudanças para Commit:**
-  - Usar `git status --short` para listar arquivos modificados
-  - Usar `git diff --stat` para estatísticas de mudanças
-  - Incluir resumo das mudanças na mensagem de commit
-  - Mencionar arquivos principais modificados se relevante
-
-- **Apresentação da Sugestão:**
-  ```markdown
-  ✅ Tasks 3, 4, 7 concluídas!
-  
-  📝 Sugestão de commit:
+- **Commit Message Format:**
   ```bash
   git add .
-  git commit -m "feat(api): Implement authentication and user management
-  
-  - Task 3: Add user login endpoint
-  - Task 4: Implement JWT token generation
-  - Task 7: Add user registration
-  
-  Tasks: 3, 4, 7"
-  ```
-  
-  📊 Mudanças detectadas:
-  - 5 arquivos modificados
-  - 120 linhas adicionadas, 8 removidas
+  git commit -m "feat(module): Complete tasks from Rubinho Task Flow
+
+  - Task 1: [description]
+  - Task 2: [description]
+
+  Completed via Rubinho Task Flow"
   ```
 
-- **Integração com Outras Regras:**
-  - Seguir [commit_practices.mdc](mdc:.cursor/rules/commit_practices.mdc) para formato de commit
-  - Seguir [git_control.mdc](mdc:.cursor/rules/git_control.mdc) - NUNCA executar git, apenas sugerir
-  - Seguir [dev_workflow.mdc](mdc:.cursor/rules/taskmaster/dev_workflow.mdc) para workflow de desenvolvimento
-  - Usar ferramentas MCP do Taskmaster quando disponíveis
+- **Integration with Other Rules:**
+  - Follow [commit_practices.mdc](mdc:.cursor/rules/commit_practices.mdc) for commit format
+  - Follow [git_control.mdc](mdc:.cursor/rules/git_control.mdc) - NEVER execute git, only suggest
+  - See `CLAUDE.md` for complete Rubinho Task Flow documentation
+  - See `README.md` for installation and setup instructions
 
-- **Casos Especiais:**
-  - **Se task já está in-progress**: Não precisa marcar novamente, apenas continuar
-  - **Se task falhar**: Marcar como apropriado (pode deixar in-progress ou criar subtask para o problema)
-  - **Se usuário cancelar**: Perguntar se deve manter in-progress ou reverter para pending
-  - **Se não houver mudanças no git**: Ainda sugerir commit, mas mencionar que não há mudanças
+- **Best Practices:**
+  - Keep task descriptions concise but clear
+  - Let AI generate detailed implementation steps
+  - Review generated subtasks before starting work
+  - Update task status regularly through the menu
+  - Commit work frequently referencing task progress
 
-- **Princípio Fundamental:**
-  > **Sempre gerenciar o status das tasks automaticamente. Antes de executar: in-progress. Após concluir: done + sugestão de commit. Nunca executar comandos git, apenas sugerir.**
+- **Task Generation:**
+  - See [task_generation.mdc](mdc:.cursor/rules/task_generation.mdc) for direct task generation rules
+  - When generating tasks, be efficient: read tasks.txt, generate JSONs, save files
+  - No need to explore codebase or read other files
+
+- **Task Flow Commands - Natural Language Interpretation:**
+  - **CRITICAL**: When user mentions **"task flow"**, they **ALWAYS** refer to **Rubinho Task Flow**
+  - Common phrases that mean "work on Rubinho Task Flow subtasks":
+    - "trabalhe nas próximas x subtasks do task flow"
+    - "work on next x subtasks from task flow"
+    - "próximas subtasks do task flow"
+    - "task flow subtasks"
+    - Any variation mentioning "task flow" + "subtasks"
+
+- **When User Asks to Work on Subtasks:**
+  - **STEP 1**: Read `.task-flow/scripts/tasks.json` and `.task-flow/scripts/status.json`
+  - **STEP 2**: Find next X pending subtasks in sequential order:
+    - Order: Task 1 → Subtask 1, 2, 3... → Task 2 → Subtask 1, 2, 3...
+    - Only count subtasks with status "pending"
+    - Skip subtasks already "done" or "in_progress"
+  - **STEP 3**: For each subtask:
+    - Read instructions from `tasks.json`
+    - Implement following step-by-step instructions
+    - After completion: Update `status.json` (subtask → "done")
+  - **STEP 4**: If all subtasks of a task are done, update task status to "done"
+
+- **Example:**
+  - User: "trabalhe nas próximas 3 subtasks do task flow"
+  - Interpretation: Work on next 3 pending subtasks from Rubinho Task Flow
+  - Action:
+    1. Read `.task-flow/scripts/tasks.json` and `.task-flow/scripts/status.json`
+    2. Find first 3 pending subtasks (e.g., 1.1, 1.2, 1.3 if all pending)
+    3. Work on 1.1 → mark done → work on 1.2 → mark done → work on 1.3 → mark done
+    4. Update status.json after each completion
+
+- **Principle:**
+  > **Use Rubinho Task Flow's interactive menu for all task management. Define tasks in plain text, let AI generate details, track progress through the menu, and commit work with descriptive messages.**
