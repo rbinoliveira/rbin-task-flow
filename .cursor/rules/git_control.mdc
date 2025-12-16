@@ -11,6 +11,16 @@ alwaysApply: true
   - **✅ NÃO precisa perguntar** antes de executar comandos simples ou comuns
   - **❌ ÚNICA EXCEÇÃO**: Comandos `git` que modificam o repositório
 
+- **Comandos de Leitura - Execução Automática:**
+  - **✅ SEMPRE executar sem perguntar** comandos que apenas leem informações:
+    - `cat`, `head`, `tail`, `less`, `more` - Visualização de arquivos
+    - `grep`, `find`, `ls`, `tree` - Busca e listagem
+    - `wc`, `stat`, `file` - Informações sobre arquivos
+    - `read_file` (ferramenta) - Leitura de arquivos
+    - Qualquer comando que **não modifica** arquivos ou sistema
+  - **✅ NUNCA perguntar** antes de executar comandos de leitura
+  - **✅ Executar imediatamente** sem esperar confirmação do usuário
+
 - **Proibição Absoluta de Executar Comandos Git:**
   - **❌ NUNCA executar** comandos `git` automaticamente
   - **❌ NUNCA fazer** `git add`, `git commit`, `git push`, `git pull`, `git merge`, etc
@@ -49,14 +59,14 @@ alwaysApply: true
 - **Formato de Sugestões:**
   ```markdown
   ✅ Task concluída!
-  
+
   📝 Sugestão de commit (você executa):
   ```bash
   git add .
   git commit -m "feat(module): Descrição"
   ```
   ```
-  
+
   **NUNCA fazer:**
   ```bash
   # ❌ DON'T: Executar automaticamente
