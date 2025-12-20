@@ -219,19 +219,18 @@ install_to_project() {
   [ ! -f "$target/.gitignore" ] && touch "$target/.gitignore"
 
   # Remove old entries if they exist
-  sed -i.bak '/^\.claude\/$/d' "$target/.gitignore" 2>/dev/null
-  sed -i.bak '/^\.gemini\/$/d' "$target/.gitignore" 2>/dev/null
-  sed -i.bak '/^\.cursor\/$/d' "$target/.gitignore" 2>/dev/null
-  sed -i.bak '/^\.task-flow\/$/d' "$target/.gitignore" 2>/dev/null
-  sed -i.bak '/^CLAUDE\.md$/d' "$target/.gitignore" 2>/dev/null
-  sed -i.bak '/^GEMINI\.md$/d' "$target/.gitignore" 2>/dev/null
-  sed -i.bak '/^# Rubinho Task Flow/d' "$target/.gitignore" 2>/dev/null
-  sed -i.bak '/^\.cursor\/rules\/$/d' "$target/.gitignore" 2>/dev/null
-  sed -i.bak '/^\.task-flow\/scripts\/tasks\.json$/d' "$target/.gitignore" 2>/dev/null
-  sed -i.bak '/^\.task-flow\/scripts\/status\.json$/d' "$target/.gitignore" 2>/dev/null
-  sed -i.bak '/^\.cursor\/rules\/\*\.local\.mdc$/d' "$target/.gitignore" 2>/dev/null
-  sed -i.bak '/^rubinho-task-flow\.sh$/d' "$target/.gitignore" 2>/dev/null
-  rm -f "$target/.gitignore.bak" 2>/dev/null
+  sed -i '' '/^\.claude\/$/d' "$target/.gitignore" 2>/dev/null
+  sed -i '' '/^\.gemini\/$/d' "$target/.gitignore" 2>/dev/null
+  sed -i '' '/^\.cursor\/$/d' "$target/.gitignore" 2>/dev/null
+  sed -i '' '/^\.task-flow\/$/d' "$target/.gitignore" 2>/dev/null
+  sed -i '' '/^CLAUDE\.md$/d' "$target/.gitignore" 2>/dev/null
+  sed -i '' '/^GEMINI\.md$/d' "$target/.gitignore" 2>/dev/null
+  sed -i '' '/^# Rubinho Task Flow/d' "$target/.gitignore" 2>/dev/null
+  sed -i '' '/^\.cursor\/rules\/$/d' "$target/.gitignore" 2>/dev/null
+  sed -i '' '/^\.task-flow\/scripts\/tasks\.json$/d' "$target/.gitignore" 2>/dev/null
+  sed -i '' '/^\.task-flow\/scripts\/status\.json$/d' "$target/.gitignore" 2>/dev/null
+  sed -i '' '/^\.cursor\/rules\/\*\.local\.mdc$/d' "$target/.gitignore" 2>/dev/null
+  sed -i '' '/^rubinho-task-flow\.sh$/d' "$target/.gitignore" 2>/dev/null
 
   # Add entries without comments
   {
