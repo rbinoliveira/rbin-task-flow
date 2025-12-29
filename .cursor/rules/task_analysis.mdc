@@ -83,7 +83,7 @@ alwaysApply: true
   - When user says "task-flow: think", "analyze if there are new tasks to create", "check for new tasks", or "suggest tasks":
     - **ANALYZE**: Current codebase, recent changes, TODOs, FIXMEs, and project structure
     - **SUGGEST**: New tasks that should be added to `.task-flow/tasks.input.txt`
-    - **FORMAT**: Use Rubinho Task Flow format: `- Task description` (no [ ] needed)
+    - **FORMAT**: Use RBIN Task Flow format: `- Task description` (no [ ] needed)
     - **ASK**: Always ask user if they want to add the suggested tasks
     - **ONLY ACTION**: If user confirms, add tasks to `.task-flow/tasks.input.txt` - nothing else
     - **DON'T**: Automatically add tasks without confirmation

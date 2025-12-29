@@ -1,12 +1,12 @@
 ---
-description: Task management workflow with Rubinho Task Flow
+description: Task management workflow with RBIN Task Flow
 globs: **/*
 alwaysApply: true
 ---
 
-- **Rubinho Task Flow - AI-Powered Task Management:**
-  - This project uses **Rubinho Task Flow** for task tracking and management
-  - **IMPORTANT**: When user mentions "task flow", they always refer to **Rubinho Task Flow**
+- **RBIN Task Flow - AI-Powered Task Management:**
+  - This project uses **RBIN Task Flow** for task tracking and management
+  - **IMPORTANT**: When user mentions "task flow", they always refer to **RBIN Task Flow**
   - Tasks are defined in plain text: `.task-flow/tasks.input.txt`
   - Task data is stored in: `.task-flow/.internal/` (do not edit directly - internal system files)
   - Task files: `.internal/tasks.json` (definitions), `.internal/status.json` (progress tracking), and `tasks.status.md` (human-readable status)
@@ -29,16 +29,15 @@ alwaysApply: true
 - **Workflow Example:**
   ```markdown
   1. Add tasks to `.task-flow/tasks.input.txt`:
-     - [ ] Implement user authentication
-     - [ ] Add database migrations
-     - [ ] Create API endpoints
+     - Implement user authentication
+     - Add database migrations
+     - Create API endpoints
 
-  2. Run: ./rubinho-task-flow.sh
-  3. Select option 1 to generate detailed subtasks
-  4. Select option 2 to view all tasks and progress
-  5. Select option 3 to view specific task details
-  6. Work on the tasks following the AI-generated instructions
-  7. Select option 4 to mark subtasks as done when completed
+  2. Use AI command: task-flow: sync (generates detailed subtasks)
+  3. Use AI command: task-flow: status (view all tasks and progress)
+  4. Use AI command: task-flow: run next X (work on next X subtasks)
+  5. Tasks are automatically marked as done when completed
+  6. Use AI command: task-flow: review (verify completed tasks)
   ```
 
 - **Commit Workflow:**
@@ -49,18 +48,18 @@ alwaysApply: true
 - **Commit Message Format:**
   ```bash
   git add .
-  git commit -m "feat(module): Complete tasks from Rubinho Task Flow
+  git commit -m "feat(module): Complete tasks from RBIN Task Flow
 
   - Task 1: [description]
   - Task 2: [description]
 
-  Completed via Rubinho Task Flow"
+  Completed via RBIN Task Flow"
   ```
 
 - **Integration with Other Rules:**
   - Follow [commit_practices.mdc](mdc:.cursor/rules/commit_practices.mdc) for commit format
   - Follow [git_control.mdc](mdc:.cursor/rules/git_control.mdc) - NEVER execute git, only suggest
-  - See `CLAUDE.md` for complete Rubinho Task Flow documentation
+  - See `CLAUDE.md` for complete RBIN Task Flow documentation
   - See `README.md` for installation and setup instructions
 
 - **Best Practices:**
@@ -92,8 +91,8 @@ alwaysApply: true
   - When user says "task-flow: refactor", improve code quality without changing functionality
 
 - **Task Flow Commands - Natural Language Interpretation:**
-  - **CRITICAL**: When user mentions **"task flow"**, they **ALWAYS** refer to **Rubinho Task Flow**
-  - Common phrases that mean "work on Rubinho Task Flow subtasks":
+  - **CRITICAL**: When user mentions **"task flow"**, they **ALWAYS** refer to **RBIN Task Flow**
+  - Common phrases that mean "work on RBIN Task Flow subtasks":
     - "trabalhe nas próximas x subtasks do task flow"
     - "work on next x subtasks from task flow"
     - "próximas subtasks do task flow"
@@ -114,7 +113,7 @@ alwaysApply: true
 
 - **Example:**
   - User: "trabalhe nas próximas 3 subtasks do task flow"
-  - Interpretation: Work on next 3 pending subtasks from Rubinho Task Flow
+  - Interpretation: Work on next 3 pending subtasks from RBIN Task Flow
   - Action:
     1. Read `.task-flow/.internal/tasks.json` and `.task-flow/.internal/status.json`
     2. Find first 3 pending subtasks (e.g., 1.1, 1.2, 1.3 if all pending)
@@ -122,4 +121,4 @@ alwaysApply: true
     4. Update both .internal/status.json and tasks.status.md after each completion
 
 - **Principle:**
-  > **Use Rubinho Task Flow's AI commands for all task management. Define tasks in plain text, let AI generate details, track progress through tasks.status.md, and commit work with descriptive messages.**
+  > **Use RBIN Task Flow's AI commands for all task management. Define tasks in plain text, let AI generate details, track progress through tasks.status.md, and commit work with descriptive messages.**

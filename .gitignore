@@ -24,6 +24,6 @@ node_modules/
 # Arquivos específicos de projeto
 .claude/settings.local.json
 
-# Rubinho Task Flow - arquivos específicos de projeto
+# RBIN Task Flow - arquivos específicos de projeto
 .task-flow/scripts/tasks.json
 .task-flow/scripts/status.json

@@ -123,7 +123,7 @@ alwaysApply: true
   - 45 linhas adicionadas, 12 removidas
   ```
 
-- **Integração com Rubinho Task Flow:**
+- **Integração com RBIN Task Flow:**
   - Após marcar uma task como concluída, automaticamente:
     1. Verificar se há mudanças no git
     2. Analisar arquivos modificados
@@ -137,5 +137,5 @@ alwaysApply: true
 
 - **Referências:**
   - Seguir padrões de [Conventional Commits](https://www.conventionalcommits.org/)
-  - Integrar com workflow do Rubinho Task Flow
+  - Integrar com workflow do RBIN Task Flow
   - Controle git: [git_control.mdc](mdc:.cursor/rules/git_control.mdc)

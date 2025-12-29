@@ -1,5 +1,5 @@
 ---
-description: Work on next X subtasks from Rubinho Task Flow - simplified commands
+description: Work on next X subtasks from RBIN Task Flow - simplified commands
 globs: **/*
 alwaysApply: true
 ---
@@ -8,7 +8,7 @@ alwaysApply: true
   - **FASTEST FORMAT**: `task-flow: run next X` (e.g., "task-flow: run next 4" → work on next 4 subtasks)
   - **TASK SPECIFIC**: `task-flow: run task X` (e.g., "task-flow: run task 1" → work on all subtasks of task 1)
   - When user says "task-flow: run next X", "faça as próximas X subtasks", or "work on next X subtasks":
-    - **INTERPRET**: User wants to work on the next X pending subtasks from Rubinho Task Flow
+    - **INTERPRET**: User wants to work on the next X pending subtasks from RBIN Task Flow
     - **AUTOMATIC**: Read tasks, find next X pending, implement them sequentially
     - **UPDATE**: Mark each subtask as done after completion
     - **NO NEED**: To specify "task flow" explicitly - it's implied

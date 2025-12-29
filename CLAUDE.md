@@ -8,18 +8,23 @@ All development rules are automatically loaded from `.cursor/rules/` directory. 
 - Code commenting standards
 - Commit practices
 - Git command control
-- Task execution management with Rubinho Task Flow
+- Task execution management with RBIN Task Flow
 
-## Rubinho Task Flow
+## RBIN Task Flow
 
-This project uses Rubinho Task Flow for task management:
-- **Task Definition**: Edit `.task-flow/.task-flow-tasks.txt` using format `- [ ] Task description`
-- **CLI**: Use `.task-flow/scripts/task-flow.sh` for all task management operations
-- **Interactive Menu**: The script provides an interactive menu with options to:
-  - Generate tasks from .task-flow-tasks.txt using AI
-  - View task status and progress
-  - View detailed task instructions
-  - Mark subtasks as done
-  - Edit .task-flow-tasks.txt directly
+This project uses RBIN Task Flow for task management:
+- **Task Definition**: Edit `.task-flow/tasks.input.txt` using simple format: `- Task description`
+- **AI Commands**: Use AI-powered commands for task management:
+  - `task-flow: sync` - Synchronize tasks from tasks.input.txt
+  - `task-flow: run next X` - Work on next X subtasks
+  - `task-flow: run task X` - Execute all pending subtasks of task X
+  - `task-flow: status` - View current task status
+  - `task-flow: review` - Review completed tasks
+  - `task-flow: think` - Analyze code and suggest new tasks
+  - `task-flow: refactor` - Refactor code from current commit
+- **Files**:
+  - `.task-flow/tasks.input.txt` - Define your tasks here
+  - `.task-flow/tasks.status.md` - Auto-generated status (DO NOT EDIT manually)
+  - `.task-flow/.internal/` - Internal system files (ignore)
 
 Follow all rules defined in `.cursor/rules/` for consistent development practices.

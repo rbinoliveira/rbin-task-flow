@@ -13,7 +13,7 @@ NC='\033[0m'
 show_header() {
   clear
   echo -e "${CYAN}╔════════════════════════════════════════════════════════════════╗${NC}"
-  echo -e "${CYAN}║${NC}        ${MAGENTA}✨ Rubinho Task Flow - Installation ✨${NC}          ${CYAN}║${NC}"
+  echo -e "${CYAN}║${NC}        ${MAGENTA}✨ RBIN Task Flow - Installation ✨${NC}          ${CYAN}║${NC}"
   echo -e "${CYAN}╚════════════════════════════════════════════════════════════════╝${NC}\n"
 }
 
@@ -225,12 +225,11 @@ install_to_project() {
   sed -i '' '/^\.task-flow\/$/d' "$target/.gitignore" 2>/dev/null
   sed -i '' '/^CLAUDE\.md$/d' "$target/.gitignore" 2>/dev/null
   sed -i '' '/^GEMINI\.md$/d' "$target/.gitignore" 2>/dev/null
-  sed -i '' '/^# Rubinho Task Flow/d' "$target/.gitignore" 2>/dev/null
+  sed -i '' '/^# RBIN Task Flow/d' "$target/.gitignore" 2>/dev/null
   sed -i '' '/^\.cursor\/rules\/$/d' "$target/.gitignore" 2>/dev/null
   sed -i '' '/^\.task-flow\/scripts\/tasks\.json$/d' "$target/.gitignore" 2>/dev/null
   sed -i '' '/^\.task-flow\/scripts\/status\.json$/d' "$target/.gitignore" 2>/dev/null
   sed -i '' '/^\.cursor\/rules\/\*\.local\.mdc$/d' "$target/.gitignore" 2>/dev/null
-  sed -i '' '/^rubinho-task-flow\.sh$/d' "$target/.gitignore" 2>/dev/null
 
   # Add entries without comments
   {

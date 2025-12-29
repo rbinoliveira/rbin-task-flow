@@ -1,4 +1,4 @@
-# Rubinho Task Flow
+# RBIN Task Flow
 
 <div align="center">
 
@@ -7,8 +7,9 @@
 ![Cursor](https://img.shields.io/badge/Cursor-IDE-blue?style=for-the-badge&logo=visual-studio-code&logoColor=white)
 ![Task Flow](https://img.shields.io/badge/Task%20Flow-AI%20Powered-green?style=for-the-badge)
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)
+![npm](https://img.shields.io/npm/v/rbin-task-flow?style=for-the-badge)
 
-**One-command setup for Claude Code, Gemini, Cursor, and Rubinho Task Flow in any project**
+**One-command setup for Claude Code, Gemini, Cursor, and RBIN Task Flow in any project**
 
 </div>
 
@@ -16,16 +17,16 @@
 
 ## Overview
 
-A centralized repository of development configurations and rules that can be instantly installed in any project. Provides complete setup for Claude Code, Gemini, Cursor IDE, and Rubinho Task Flow - a simple AI-powered task management system.
+A centralized repository of development configurations and rules that can be instantly installed in any project. Provides complete setup for Claude Code, Gemini, Cursor IDE, and RBIN Task Flow - a simple AI-powered task management system.
 
 ### Key Features
 
-- **One-Command Installation** - Complete setup with `./install-rules.sh`
+- **NPM Global Installation** - Install once, use everywhere with `npm install -g rbin-task-flow`
 - **Simple Task Management** - Define tasks in plain text, AI generates detailed subtasks
 - **Multiple AI Models** - Claude Code Sonnet and Gemini 3 Flash configured and ready to use
 - **Discrete .gitignore** - AI configs hidden with generic comments
 - **Zero Configuration** - Ready to use immediately
-- **Rubinho Task Flow** - AI-powered task management with simple text interface
+- **RBIN Task Flow** - AI-powered task management with simple text interface
 
 ## System Requirements
 
@@ -35,22 +36,37 @@ A centralized repository of development configurations and rules that can be ins
 
 ## Installation
 
-### Quick Start
+### Quick Start (NPM Global)
 
 ```bash
-# 1. Clone this repository (one time only)
-git clone https://github.com/rubensdeoliveira/rubinho-task-flow.git ~/.rubinho-task-flow
+# 1. Install globally via npm (one time only)
+npm install -g rbin-task-flow
 
-# 2. Install in your project
-~/.rubinho-task-flow/install.sh
-# Enter your project path when prompted
-
-# 3. Go to your project and run the task manager
+# 2. Go to any project and initialize
 cd /path/to/your/project
-Use comandos da IA: `task-flow: sync`, `task-flow: run next X`, `task-flow: run task X`, etc.
+rbin-task-flow init
+
+# 3. Use AI commands
+# Edit .task-flow/tasks.input.txt and use:
+# - task-flow: sync
+# - task-flow: run next X
+# - task-flow: run task X
 ```
 
-**That's it!** The interactive menu guides you through everything.
+**That's it!** RBIN Task Flow is now available globally on your system.
+
+### Alternative: Legacy Installation (Without NPM)
+
+If you prefer the old method without npm:
+
+```bash
+# 1. Clone this repository
+git clone https://github.com/rubensdeoliveira/rbin-task-flow.git ~/.rbin-task-flow
+
+# 2. Install in your project
+~/.rbin-task-flow/install.sh
+# Enter your project path when prompted
+```
 
 ### What Gets Installed
 
@@ -74,7 +90,7 @@ your-project/
 ├── .gemini/
 │   └── settings.json             # Gemini settings
 │
-├── .task-flow/                   # Rubinho Task Flow
+├── .task-flow/                   # RBIN Task Flow
 │   ├── tasks.input.txt           # Plain text task definitions (edit this!)
 │   ├── tasks.status.md           # ⚠️ Task status (auto-updated, DO NOT EDIT)
 │   └── .internal/                # ⚠️ Internal system files (ignore - auto-generated)
@@ -95,22 +111,27 @@ No additional configuration required! Just make sure you have:
 
 ## Usage
 
-### Rubinho Task Flow - Interactive Menu
+### RBIN Task Flow Commands
 
-Just run the script and navigate through the menu:
+After installing globally, you can use these commands:
 
 ```bash
-Use comandos da IA: `task-flow: sync`, `task-flow: run next X`, `task-flow: run task X`, etc.
+# Initialize in current directory
+rbin-task-flow init
+
+# Update configurations
+rbin-task-flow update
+
+# Check for model version updates
+rbin-task-flow version-check
+
+# Show help information
+rbin-task-flow info
 ```
 
-O menu apresenta as seguintes opções:
+### AI Commands
 
-**Menu Principal** (quando executado fora de um projeto):
-1. 🚀 **Instalar em um projeto** - Instala o Task Flow em qualquer projeto
-2. 📋 **Gerenciar tasks** - Acessa o menu de gerenciamento de tasks
-0. 🚪 **Sair**
-
-**Comandos da IA disponíveis:**
+Once initialized in a project, use these AI commands:
 - `task-flow: sync` - Sincronização completa: adiciona novas, remove removidas, atualiza modificadas, preserva status
 - `task-flow: think` - Analisa código e sugere novas tasks
 - `task-flow: run next X` - Trabalha nas próximas X subtasks sequenciais
@@ -122,18 +143,15 @@ O menu apresenta as seguintes opções:
 **Complete workflow:**
 
 ```bash
-# 1. Clone the repository (one time)
-git clone https://github.com/rubensdeoliveira/rubinho-task-flow.git ~/.rubinho-task-flow
+# 1. Install globally (one time)
+npm install -g rbin-task-flow
 
-# 2. Install in your project
-~/.rubinho-task-flow/install.sh
-# Enter: /path/to/my-project
-
-# 3. Go to your project
+# 2. Initialize in your project
 cd /path/to/my-project
+rbin-task-flow init
 
-# 4. Use AI commands:
-#    - Edit tasks.input.txt and use 'task-flow: sync' to generate
+# 3. Use AI commands:
+#    - Edit .task-flow/tasks.input.txt and use 'task-flow: sync' to generate
 #    - Use 'task-flow: run next X' to work on next X subtasks
 #    - Use 'task-flow: run task X' to work on all subtasks of task X
 #    - Use 'task-flow: status' to view progress
@@ -150,26 +168,26 @@ cd /path/to/my-project
 Cursor is pre-configured with:
 - Claude Sonnet 4.5 Pro as default model
 - Custom settings
-- Rubinho Task Flow integration
+- RBIN Task Flow integration
 - Development best practices
 
 All rules are automatically active in Cursor. The IDE will:
 - Follow coding standards from `.cursor/rules/`
-- Integrate with Rubinho Task Flow workflows
+- Integrate with RBIN Task Flow workflows
 - Follow commit and git practices
 
 ### Claude Code Integration
 
 Claude Code is pre-configured with:
 - Custom settings
-- Rubinho Task Flow integration
+- RBIN Task Flow integration
 - Development best practices
 
 ### Gemini Integration
 
 Gemini is pre-configured with:
 - Custom settings
-- Rubinho Task Flow integration
+- RBIN Task Flow integration
 - Development best practices
 
 ## What's Configured
@@ -184,7 +202,7 @@ Included rules for:
 - Git command control
 - Task execution management
 
-### Rubinho Task Flow
+### RBIN Task Flow
 
 Simple yet powerful task management:
 - **Plain Text Input**: Write tasks in `.task-flow/tasks.input.txt` using simple format
@@ -209,7 +227,7 @@ GEMINI.md
 **Why discrete?**
 - No comments explaining what they are
 - No mention of "AI", "Claude", or "Anthropic"
-- Everything related to Rubinho Task Flow stays local
+- Everything related to RBIN Task Flow stays local
 - Clean git history without AI tooling files
 
 ## Updating Projects
@@ -217,7 +235,12 @@ GEMINI.md
 To update configs in an existing project:
 
 ```bash
-~/.rubinho-task-flow/install.sh
+# Using NPM (recommended)
+cd /path/to/your/project
+rbin-task-flow update
+
+# Or using legacy method
+~/.rbin-task-flow/install.sh
 # Enter the project path
 ```
 
@@ -235,7 +258,7 @@ The installer will:
 This repository contains:
 
 ```
-rubinho-task-flow/
+rbin-task-flow/
 ├── .cursor/
 │   ├── settings.json             # Cursor model settings
 │   └── rules/                    # All development rules
@@ -264,16 +287,16 @@ rubinho-task-flow/
 
 ## Important Notes
 
-- ⚠️ This is a **template repository** - don't use Rubinho Task Flow here
-- ✅ Use Rubinho Task Flow in **projects that receive** the configs via installation
+- ⚠️ This is a **template repository** - don't use RBIN Task Flow here
+- ✅ Use RBIN Task Flow in **projects that receive** the configs via installation
 - 🔄 Installer **always overwrites** existing configs
 - 🤫 .gitignore entries are **discrete** (no AI mentions)
 - 🎯 Works with **Claude Code CLI**, **Gemini API**, or **Cursor Pro**
 - 📦 Task Flow directory (`.task-flow/`) is **automatically gitignored**
 - 📝 Define tasks in `.task-flow/tasks.input.txt` using simple format: `- Task description`
-- 🚀 Simple installation with `install.sh`, management with `Use comandos da IA: `task-flow: sync`, `task-flow: run next X`, `task-flow: run task X`, etc.`
+- 🚀 **NPM Global Install**: `npm install -g rbin-task-flow`, then use `rbin-task-flow init` in any project
 - 🔒 **API keys may be required** - depends on your AI provider (Claude Code, Gemini API, or Cursor Pro)
-- 🔔 **Model version checking** - Automatically checks for newer model versions after installation (fast, local check)
+- 🔔 **Model version checking** - Use `rbin-task-flow version-check` to check for newer model versions (fast, local check)
 
 ## Updating Model Versions
 
@@ -314,7 +337,7 @@ The installer will automatically check for newer model versions and **ask you in
   - **NO model update prompts** - just copies what's in the template
   - Target project receives the current template versions
 
-- **When running installer in the repository itself** (rubinho-task-flow):
+- **When running installer in the repository itself** (rbin-task-flow):
   - If new model versions are detected, you can choose to update them
   - Updates are applied **only to the repository template** files
   - After updating the template, run installer on projects to apply the new versions
@@ -353,6 +376,6 @@ For issues or questions:
 
 **Made with ❤️ for developers who love simple, AI-powered workflows**
 
-[⬆ Back to top](#rubinho-task-flow)
+[⬆ Back to top](#rbin-task-flow)
 
 </div>
