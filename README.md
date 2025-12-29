@@ -19,6 +19,18 @@
 
 ---
 
+<div align="center">
+
+### Screenshots
+
+<img src=".github/screens/1.png" alt="Screenshot 1" width="800"/>
+<img src=".github/screens/2.png" alt="Screenshot 2" width="800"/>
+<img src=".github/screens/3.png" alt="Screenshot 3" width="800"/>
+
+</div>
+
+---
+
 <a id="português"></a>
 # 🇧🇷 Português
 
