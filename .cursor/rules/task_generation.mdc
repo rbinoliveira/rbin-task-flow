@@ -65,20 +65,41 @@ alwaysApply: true
   ```markdown
   # Task Status
 
+  <!-- ⚠️ AVISO: Este arquivo é atualizado automaticamente pela IA. NÃO edite manualmente. -->
+
+  ## 📊 Resumo
+
+  - ✅ **Tasks Completas**: 0
+  - ⏳ **Tasks em Andamento**: 2
+  - 📝 **Subtasks Restantes**: 8
+
+  **Tasks:**
+  - ✅ Task 1: First task (completa)
+  - ⏳ Task 2: Second task (3 subtasks restantes de 5)
+
+  ---
+
   ## Tasks
 
-  - [ ] Task Title
+  - [x] First task
 
-    - [ ] Subtask Title 1
+    - [x] Subtask Title 1
+    - [x] Subtask Title 2
+
+  - [ ] Second task
+
+    - [x] Subtask Title 1
     - [ ] Subtask Title 2
-
-  - [ ] Another Task Title
-
-    - [ ] Subtask Title 1
-    - [ ] Subtask Title 2
+    - [ ] Subtask Title 3
   ```
+  - **ALWAYS include summary section** at the top with:
+    - ✅ Tasks completas (all subtasks done)
+    - ⏳ Tasks em andamento (some subtasks done)
+    - 📝 Total de subtasks restantes
+    - Lista de tasks com status e quantas subtasks faltam
   - All tasks and subtasks start as `- [ ]` (pending)
-  - Format: Task title with `- [ ]`, then subtasks indented with `  - [ ]`
+  - Format: Task title with `- [ ]` or `- [x]`, then subtasks indented with `  - [ ]` or `  - [x]`
+  - **CRITICAL**: Always regenerate summary when updating tasks.status.md
 
 - **Example:**
   - Input (`tasks.input.txt`): `- Create authentication system`

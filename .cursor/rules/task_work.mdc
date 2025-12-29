@@ -109,10 +109,19 @@ alwaysApply: true
 
 - **Status Update Process:**
   - When marking a subtask as done:
-    1. Update `.task-flow/.internal/status.json` (set subtask status to "done")
-    2. Update `.task-flow/tasks.status.md` (change `- [ ]` to `- [x]` for the subtask)
-    3. If all subtasks of a task are done, mark task as done in both files
-    4. Format for `tasks.status.md`: Tasks with `- [ ]` or `- [x]`, subtasks indented with `  - [ ]` or `  - [x]`
+    1. Read `.task-flow/.internal/tasks.json` and `.task-flow/.internal/status.json`
+    2. Update `.task-flow/.internal/status.json` (set subtask status to "done")
+    3. Update `.task-flow/tasks.status.md`:
+       - Change `- [ ]` to `- [x]` for the subtask
+       - If all subtasks of a task are done, mark task as `- [x]`
+       - **REGENERATE SUMMARY**: Always update the "📊 Resumo" section at the top with:
+         - Count of completed tasks (✅)
+         - Count of in-progress tasks (⏳)
+         - Total remaining subtasks (📝)
+         - List each task with status and remaining subtasks count
+    4. Format for `tasks.status.md`: 
+       - Summary section at top (always regenerate)
+       - Tasks with `- [ ]` or `- [x]`, subtasks indented with `  - [ ]` or `  - [x]`
 
 - **Examples:**
   ```

@@ -62,6 +62,11 @@ alwaysApply: true
      - Rebuild tasks.json with all tasks in correct order (matching tasks.input.txt order)
      - Rebuild status.json preserving all existing statuses (or updating if needed)
      - Rebuild tasks.status.md with all tasks and correct status marks (synchronized with status.json)
+     - **ALWAYS regenerate summary section** at the top of tasks.status.md:
+       - Count completed tasks (all subtasks done)
+       - Count in-progress tasks (some subtasks done)
+       - Total remaining subtasks
+       - List each task with status and remaining subtasks count
   
   **Critical Rules:**
   - ✅ Always preserve status of existing tasks/subtasks when possible
