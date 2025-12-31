@@ -132,6 +132,8 @@ show_model_versions() {
     local claude_model=$(grep -o '"model": "[^"]*"' "$target/.claude/settings.json" | cut -d'"' -f4)
     if [ -n "$claude_model" ]; then
       echo -e "${BLUE}Claude:${NC} ${YELLOW}$claude_model${NC}"
+    else
+      echo -e "${BLUE}Claude:${NC} ${YELLOW}Default (recommended)${NC}"
     fi
   fi
 
